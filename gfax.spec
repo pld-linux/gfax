@@ -15,6 +15,7 @@ BuildRequires:	mono-csharp
 BuildRequires:	dotnet-gtk-sharp-devel
 Requires:	mono >= 0.93
 Requires:	dotnet-gtk-sharp >= 0.93
+ExcludeArch:	alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,7 +56,6 @@ install -m 644 data/gfax.schema $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/gfax
 
 %preun
 %{_datadir}/gfax/printer-setup.sh --remove
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
