@@ -19,7 +19,6 @@ BuildRequires:	gnome-print-devel >= 0.28
 BuildRequires:	libglade-gnome-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 
 %description
 Gfax is a popup tool for easily sending facsimilies by printing to a
