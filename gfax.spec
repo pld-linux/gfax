@@ -1,4 +1,5 @@
 Summary:	The GNOME Fax Application
+Summary(pl):	Aplikacja GNOME do faksów
 Name:		gfax
 Version:	0.4.2
 Release:	2
@@ -11,6 +12,8 @@ Patch0:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch1:		%{name}-add_uk_to_ALL_LINGUAS.aptch
 Patch2:		%{name}-time.h.patch
 BuildRequires:	bison
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel
 BuildRequires:	gnome-print-devel >= 0.28
