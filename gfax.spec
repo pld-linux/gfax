@@ -7,7 +7,8 @@ License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
 # Source0-md5:	9ec7185ed012607fa529b5758e02e0d2
-Patch1:		%{name}-destdir.patch
+Patch0:		%{name}-destdir.patch
+Patch1:		%{name}-amd64.patch
 URL:		http://www.cowlug.org/gfax/
 BuildRequires:	mono-csharp
 BuildRequires:	dotnet-gtk-sharp-devel
@@ -29,6 +30,7 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 
 %prep
 %setup -q
+%patch0 -p1
 %patch1 -p1
 
 %build
