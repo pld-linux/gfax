@@ -11,9 +11,10 @@ Patch1:		%{name}-destdir.patch
 URL:		http://www.cowlug.org/gfax/
 BuildRequires:	mono-csharp
 BuildRequires:	dotnet-gtk-sharp-devel
-BuildArch:      noarch
-Requires:       mono >= 0.93
+BuildArch:	noarch
+Requires:	mono >= 0.93
 Requires:	dotnet-gtk-sharp >= 0.93
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
