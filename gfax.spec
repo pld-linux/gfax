@@ -40,7 +40,7 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 %build
 aclocal -I macros
 autoconf
-automake -a -c
+automake -a -c -f
 gettextize --copy --force
 
 %configure
