@@ -1,9 +1,10 @@
 Summary:	The GNOME Fax Application
 Name:		gfax
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Source0:	ftp://raven.cc.mala.bc.ca/pub/Linux/%{name}-%{version}.tar.gz
 BuildRequires:	gettext-devel
@@ -19,9 +20,6 @@ Gfax is a popup tool for easily sending facsimilies by printing to a
 fax printer.
 
 Gfax works with GNOME.
-
-GNOME is the GNU Network Object Model Environment. That's a fancy
-name, but really GNOME is a nice GUI desktop environment.
 
 %description -l pl
 Gfax jest narzêdziem do ³atwego wysy³ania faksów poprzez drukowanie
