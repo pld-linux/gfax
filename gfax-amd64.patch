@@ -1,0 +1,9 @@
+diff -ur gfax-0.6.4.orig/Makefile gfax-0.6.4/Makefile
+--- gfax-0.6.4.orig/Makefile	2004-07-01 00:27:25.000000000 +0200
++++ gfax-0.6.4/Makefile	2004-09-18 21:47:46.434552592 +0200
+@@ -1,4 +1,4 @@
+-export MONO_PATH=/usr/lib/mono:/usr/lib/mono/gtk-sharp
++export MONO_PATH=/usr/lib/mono:/usr/lib/mono/gtk-sharp:/usr/lib64/mono:/usr/lib64/mono/gtk-sharp
+ 
+ MCS = mcs /define:DEBUG
+ #MCS = mcs /define:DEBUGHYLAFAX
