@@ -20,6 +20,14 @@ Gfax works with GNOME.
 GNOME is the GNU Network Object Model Environment. That's a fancy name, but
 really GNOME is a nice GUI desktop environment.
 
+%description -l pl
+Gfax jest narzêdziem do ³atwego wysy³ania faksów poprzez drukowanie ich na
+drukarce faksowej.
+Gfax dzia³a z GNOME.
+GNOME to skrót od GNU Network Object Model Environment. Nazwa mo¿e siê wydawaæ
+nieco dziwna, w rzeczywistosci jednak GNOME jest estetycznym ¶rodowiskiem
+graficznym.
+
 %prep
 %setup -q
 
