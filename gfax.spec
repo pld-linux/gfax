@@ -1,38 +1,27 @@
-# Note that this is NOT a relocatable package
-%define ver      0.2.1
-%define rel      1
-%define prefix   /usr
-
-Summary: The GNOME Fax Application.
-Name: gfax
-Version: %ver
-Release: %rel
-Copyright: GPL
-Group: Applications/Communications
-Source: ftp://raven.cc.mala.bc.ca/pub/Linux/gfax-%{ver}.tar.gz
-
-BuildRoot: /var/tmp/gfax-%{PACKAGE_VERSION}-root
-Obsoletes: gnome
-
-URL: http://www.gmsys.com
-Docdir: %{prefix}/doc
-
-
-Requires: gnome-libs >= 1.0.0
-Requires: gnome-objc >= 1.0.2
+Summary:	The GNOME Fax Application.
+Name:		gfax
+Version:	0.2.1
+Release:	1
+Copyright:	GPL
+Group:		Applications/Communications
+Source:		ftp://raven.cc.mala.bc.ca/pub/Linux/%{name}-%{version}.tar.gz
+Requires:	gnome-libs >= 1.0.0
+Requires:	gnome-objc >= 1.0.2
+URL:		http://www.gmsys.com/
+BuildRoot:	/tmp/%{name}-%{version}-root
+Obsoletes:	gnome
 
 %description
-Gfax is a popup tool for easily sending
-facsimilies by printing to a fax printer.
+Gfax is a popup tool for easily sending facsimilies by printing to a fax
+printer.
 
 Gfax works with GNOME.
 
-GNOME is the GNU Network Object Model Environment. That's
-a fancy name, but really GNOME is a nice GUI desktop 
-environment. 
+GNOME is the GNU Network Object Model Environment. That's a fancy name, but
+really GNOME is a nice GUI desktop environment.
 
 %prep
-%setup
+%setup -q
 
 %build
 
