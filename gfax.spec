@@ -2,20 +2,19 @@ Summary:	The GNOME Fax Application
 Summary(pl):	Aplikacja GNOME do faksów
 Name:		gfax
 Version:	0.6.4
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
 # Source0-md5:	9ec7185ed012607fa529b5758e02e0d2
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-amd64.patch
+Patch2:		%{name}-desktop.patch
 URL:		http://www.cowlug.org/gfax/
 BuildRequires:	mono-csharp
 BuildRequires:	dotnet-gtk-sharp-devel
-BuildArch:	noarch
 Requires:	mono >= 0.93
 Requires:	dotnet-gtk-sharp >= 0.93
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,6 +31,7 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
@@ -42,7 +42,7 @@ rm -f missing
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},/usr/share/applications,%{_sysconfdir}/gconf/schemas,%{_var}/spool/gfax}
+install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_sysconfdir}/gconf/schemas,%{_var}/spool/gfax}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
