@@ -39,7 +39,7 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 
 %build
 rm -f missing
-gettextize --copy --force
+%{__gettextize}
 aclocal -I macros
 CFLAGS="%{optflags} `pkg-config libglade-gnome --cflags`"
 %{__autoconf}
