@@ -8,7 +8,7 @@ Source:		ftp://raven.cc.mala.bc.ca/pub/Linux/%{name}-%{version}.tar.gz
 Requires:	gnome-libs >= 1.0.0
 Requires:	gnome-objc >= 1.0.2
 URL:		http://www.gmsys.com/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 
 %description
