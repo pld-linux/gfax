@@ -5,7 +5,7 @@ Version:	0.4.2
 Release:	3
 License:	GPL
 Group:		Applications/Communications
-Source0:	ftp://raven.cc.mala.bc.ca/pub/Linux/%{name}-%{version}.tar.gz
+Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
 Patch0:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch1:		%{name}-add_uk_to_ALL_LINGUAS.aptch
 Patch2:		%{name}-time.h.patch
@@ -16,7 +16,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel
 BuildRequires:	gnome-print-devel >= 0.28
 BuildRequires:	libglade-devel
-URL:		http://www.gmsys.com/gnome-gfax.html
+URL:		http://www.cowlug.org/gfax/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -38,10 +38,11 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 %patch2 -p1
 
 %build
+rm -f missing
+gettextize --copy --force
 aclocal -I macros
 autoconf
 automake -a -c -f
-gettextize --copy --force
 
 %configure
 %{__make}
