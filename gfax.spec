@@ -9,14 +9,14 @@ Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
 Patch0:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch1:		%{name}-add_uk_to_ALL_LINGUAS.aptch
 Patch2:		%{name}-time.h.patch
+URL:		http://www.cowlug.org/gfax/
 BuildRequires:	bison
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel
 BuildRequires:	gnome-print-devel >= 0.28
-BuildRequires:	libglade-devel
-URL:		http://www.cowlug.org/gfax/
+BuildRequires:	libglade-gnome-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
