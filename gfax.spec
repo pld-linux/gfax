@@ -5,16 +5,16 @@ Version:	0.6.4
 Release:	4
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
+Source0:	http://gfax.cowlug.org/%{name}-%{version}.tar.gz
 # Source0-md5:	9ec7185ed012607fa529b5758e02e0d2
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-amd64.patch
 Patch2:		%{name}-desktop.patch
-URL:		http://www.cowlug.org/gfax/
-BuildRequires:	mono-csharp
+URL:		http://gfax.cowlug.org/
 BuildRequires:	dotnet-gtk-sharp-devel
-Requires:	mono >= 0.93
+BuildRequires:	mono-csharp
 Requires:	dotnet-gtk-sharp >= 0.93
+Requires:	mono >= 0.93
 ExcludeArch:	alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,20 +35,20 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 %patch2 -p1
 
 %build
-rm -f missing
-
 %{__make} schema
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir},%{_sysconfdir}/gconf/schemas,%{_var}/spool/gfax}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -m 644 data/gfax.schema $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/gfax.schemas
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 %gconf_schema_install
@@ -57,13 +57,9 @@ install -m 644 data/gfax.schema $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/gfax
 %preun
 %{_datadir}/gfax/printer-setup.sh --remove
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(644,root,root,755)
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%doc AUTHORS COPYING ChangeLog README INSTALL NEWS TODO
+%doc AUTHORS ChangeLog README INSTALL NEWS TODO
 %attr(755,root,root) %{_bindir}/gfax
 %attr(755,root,root) %{_bindir}/gfaxlpr
 %attr(755,root,root) %{_bindir}/mono-gfax.exe
@@ -73,4 +69,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/gfax/printer-setup.sh
 %{_pixmapsdir}/*
 %{_desktopdir}/*
+%{_sysconfdir}/gconf/schemas/*.schemas
 %attr(1777,root,root) %dir %{_var}/spool/gfax
