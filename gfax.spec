@@ -1,23 +1,17 @@
 Summary:	The GNOME Fax Application
 Summary(pl):	Aplikacja GNOME do faksów
 Name:		gfax
-Version:	0.4.2
-Release:	5
+Version:	0.6.3
+Release:	0.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
-# Source0-md5:	815523780287a97133e85585f0319a20
-Patch0:		%{name}-use_AM_GNU_GETTEXT.patch
-Patch1:		%{name}-add_uk_to_ALL_LINGUAS.aptch
-Patch2:		%{name}-time.h.patch
+# Source0-md5:	7d7b6e6fc113df03aad7f6a41f3e61c7
+Patch1:		%{name}-destdir.patch
 URL:		http://www.cowlug.org/gfax/
-BuildRequires:	bison
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gettext-devel
-BuildRequires:	gnome-libs-devel
-BuildRequires:	gnome-print-devel >= 0.28
-BuildRequires:	libglade-gnome-devel
+BuildArch:      noarch
+Requires:       mono >= 0.93
+Requires:	gtk-sharp >= 0.93
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
@@ -33,37 +27,46 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 rm -f missing
-%{__gettextize}
-%{__aclocal} -I macros
-CFLAGS="%{rpmcflags} `pkg-config libglade-gnome --cflags`"
-%{__autoconf}
-%{__automake}
 
-%configure
+%{__make} schema
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	Applicationsdir=%{_applnkdir}/Office/Misc
+install -d $RPM_BUILD_ROOT{%{_pixmapsdir},/usr/share/applications,%{_sysconfdir}/gconf/schemas,%{_var}/spool/gfax}
 
-%find_lang %{name} --with-gnome
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+install -m 644 data/gfax.schema $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/gfax.schemas
+
+%post
+%gconf_schema_install
+%{_datadir}/gfax/printer-setup.sh --install
+
+%preun
+%{_datadir}/gfax/printer-setup.sh --remove
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README FAQ-gfax
+%config %{_sysconfdir}/gconf/schemas/*.schemas
+%doc AUTHORS COPYING ChangeLog README INSTALL NEWS TODO
 %attr(755,root,root) %{_bindir}/gfax
-%{_datadir}/gfax
+%attr(755,root,root) %{_bindir}/gfaxlpr
+%attr(755,root,root) %{_bindir}/mono-gfax.exe
+%dir %{_datadir}/gfax
+%{_datadir}/gfax/*.xml
+%{_datadir}/gfax/fax-g3.profile
+%attr(755,root,root) %{_datadir}/gfax/printer-setup.sh
 %{_pixmapsdir}/*
-%{_applnkdir}/Office/Misc/*
+%{_desktopdir}/*
+%attr(1777,root,root) %dir %{_var}/spool/gfax
