@@ -36,7 +36,7 @@ graficznym.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_prefix}
-make prefix=$RPM_BUILD_ROOT%{_prefix} install
+%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
 strip $RPM_BUILD_ROOT%{_bindir}/* || :
 
 %post
