@@ -2,7 +2,7 @@ Summary:	The GNOME Fax Application
 Summary(pl):	Aplikacja GNOME do faksów
 Name:		gfax
 Version:	0.4.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
@@ -41,6 +41,7 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 rm -f missing
 gettextize --copy --force
 aclocal -I macros
+CFLAGS="%{optflags} `pkg-config libglade-gnome --cflags`"
 %{__autoconf}
 %{__automake}
 
@@ -54,16 +55,14 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	Applicationsdir=%{_applnkdir}/Office/Misc
 
-gzip -9nf AUTHORS ChangeLog NEWS README FAQ-gfax
-
 %find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS README FAQ-gfax
 %attr(755,root,root) %{_bindir}/gfax
 %{_datadir}/gfax
 %{_pixmapsdir}/*
