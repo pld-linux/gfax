@@ -52,5 +52,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %attr(755,root,root) %{_bindir}/gfax
 %{_datadir}/gfax
-%{_datadir}/pixmaps/*
+%{_pixmapsdir}/*
 %{_applnkdir}/Office/Misc/*
