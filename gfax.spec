@@ -6,6 +6,7 @@ Release:	5
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
+# Source0-md5:	815523780287a97133e85585f0319a20
 Patch0:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch1:		%{name}-add_uk_to_ALL_LINGUAS.aptch
 Patch2:		%{name}-time.h.patch
