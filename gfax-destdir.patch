@@ -1,37 +1,21 @@
---- gfax-0.6.3/Makefile~	2004-06-21 21:41:31.000000000 +0000
-+++ gfax-0.6.3/Makefile	2004-07-27 08:06:14.000000000 +0000
-@@ -38,21 +38,19 @@
- 	cd ..; tar cvzf mg.$(DATE).tar.gz mono-gfax
- 	
- install: mono-gfax.exe
--	mkdir -p $(prefix)/bin
--	mkdir -p /usr/share/gfax
--	mkdir -p /var/spool/gfax
--	chmod 777 /var/spool/gfax
--	$(INSTALL) -m 755 mono-gfax.exe /usr/bin/mono-gfax.exe
--	$(INSTALL) -m 755 gfax /usr/bin/gfax
--	$(INSTALL) -m 755 gfaxlpr /usr/bin/gfaxlpr
--	$(INSTALL) -m 755 pixmaps/gfax.png /usr/share/pixmaps/
--	$(INSTALL) -m 755 data/gfax.desktop /usr/share/applications/
--	$(INSTALL) -m 755 data/fax-g3.profile /usr/share/gfax/
--	$(INSTALL) -m 755 data/GFAX.xml /usr/share/gfax/
--	$(INSTALL) -m 755 data/GNOME-GFAX-PS.xml /usr/share/gfax/
--	$(INSTALL) -m 755 scripts/printer-setup.sh /usr/share/gfax/
--	env GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule $(SCHEMA)
--	./scripts/printer-setup.sh --install
-+	mkdir -p $(DESTDIR)/usr/bin
-+	mkdir -p $(DESTDIR)/usr/share/gfax
-+	mkdir -p $(DESTDIR)/var/spool/gfax
-+	chmod 777 $(DESTDIR)/var/spool/gfax
-+	$(INSTALL) -m 755 mono-gfax.exe $(DESTDIR)/usr/bin/mono-gfax.exe
-+	$(INSTALL) -m 755 gfax $(DESTDIR)/usr/bin/gfax
-+	$(INSTALL) -m 755 gfaxlpr $(DESTDIR)/usr/bin/gfaxlpr
-+	$(INSTALL) -m 755 pixmaps/gfax.png $(DESTDIR)/usr/share/pixmaps/
-+	$(INSTALL) -m 755 data/gfax.desktop $(DESTDIR)/usr/share/applications/
-+	$(INSTALL) -m 755 data/fax-g3.profile $(DESTDIR)/usr/share/gfax/
-+	$(INSTALL) -m 755 data/GFAX.xml $(DESTDIR)/usr/share/gfax/
-+	$(INSTALL) -m 755 data/GNOME-GFAX-PS.xml $(DESTDIR)/usr/share/gfax/
-+	$(INSTALL) -m 755 scripts/printer-setup.sh $(DESTDIR)/usr/share/gfax/
+--- gfax/src/Makefile.am.orig	2005-02-21 20:45:11.000000000 +0100
++++ gfax/src/Makefile.am	2005-05-03 02:01:02.000000000 +0200
+@@ -46,14 +46,14 @@
  
- uninstall:
- 	rm -f /usr/bin/mono-gfax.exe
+ install-data-local: $(TARGET)
+ 	$(mkinstalldirs) $(DESTDIR)$(pkglibdir)
+-	$(mkinstalldirs) -m 777 $(eprefix)/var/spool/gfax
+-	$(mkinstalldirs) -m 777 $(eprefix)/var/spool/gfax/doneq
+-	$(mkinstalldirs) -m 777 $(eprefix)/var/spool/gfax/recq
++	$(mkinstalldirs) -m 1777 $(DESTDIR)$(eprefix)/var/spool/gfax
++	$(mkinstalldirs) -m 1777 $(DESTDIR)$(eprefix)/var/spool/gfax/doneq
++	$(mkinstalldirs) -m 1777 $(DESTDIR)$(eprefix)/var/spool/gfax/recq
+ 	$(INSTALL_PROGRAM) $(TARGET) $(DESTDIR)$(pkglibdir)/$(TARGET)
+ 
+ uninstall-local:
+ 	rm -f $(DESTDIR)$(pkglibdir)/$(TARGET)
+-	rm -rf $(eprefix)/var/spool/gfax
++	rm -rf $(DESTDIR)$(eprefix)/var/spool/gfax
+ 
+ EXTRA_DIST =            		\
+ 	$(srcdir)/Defines.cs.in		\

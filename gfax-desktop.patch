@@ -1,18 +1,22 @@
-diff -urN gfax-0.6.4.orig/data/gfax.desktop gfax-0.6.4/data/gfax.desktop
---- gfax-0.6.4.orig/data/gfax.desktop	2004-11-30 21:32:28.254829920 +0100
-+++ gfax-0.6.4/data/gfax.desktop	2004-11-30 21:34:28.988475616 +0100
-@@ -1,8 +1,11 @@
+--- gfax/gfax.desktop.orig	2005-02-28 23:13:26.000000000 +0100
++++ gfax/gfax.desktop	2005-05-02 23:51:54.000000000 +0200
+@@ -1,15 +1,15 @@
  [Desktop Entry]
+ Version=1.0
+ Encoding=UTF-8
 -Name=Gfax Facsimile Sender
+-Name[de]=Gfax Faxversand
+-Name[en_CA]=Gfax Facsimile Sender
 +Name=Gfax
  Comment=Send Facsimiles
+ Comment[de]=Faxe versenden
+ Comment[en_CA]=Send Facsimiles
 +Comment[pl]=Wysyłanie faksów
  Exec=gfax
--Terminal=0
-+Terminal=false
- Type=Application
  Icon=gfax.png
+ StartupNotify=true
+ Terminal=false
+ Type=Application
 -Categories=Application;Office;
 +Categories=GTK;Office;X-Misc;
-+Encoding=UTF-8
 +# vi: encoding=utf-8
