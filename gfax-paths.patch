@@ -1,0 +1,63 @@
+--- gfax/configure.in.orig	2005-02-22 22:22:43.000000000 +0100
++++ gfax/configure.in	2005-05-03 02:17:10.000000000 +0200
+@@ -41,6 +41,20 @@
+         AC_MSG_ERROR([Can't find "mcs" in your PATH])
+ fi
+ 
++PKG_CHECK_MODULES(MONO_DEPENDENCY, mono, have_mono=true, have_mono=false)
++PKG_CHECK_MODULES(MONO_DEPENDENCY, mint, have_mint=true, have_mint=false)
++
++if test "$have_mono" = "true"; then
++	mono=mono
++else
++	if test "$have_mint" = "true"; then
++		mono=mint
++	else
++		AC_MSG_ERROR([Can't find either mono or mint])
++	fi
++fi
++AC_SUBST(mono)
++
+ #
+ # Use DBus# to export our remote control if available.
+ #
+--- gfax/gfax.in.orig	2005-02-01 00:03:09.000000000 +0100
++++ gfax/gfax.in	2005-05-03 02:13:33.000000000 +0200
+@@ -22,11 +22,11 @@
+ fi
+ 
+ if [ $STD = "yes" ]; then
+-	exec mono @prefix@/lib/gfax/gfax.exe -f $SPOOL_DIR/D.$RNAME &
++	exec @mono@ @pkglibdir@/gfax.exe -f $SPOOL_DIR/D.$RNAME &
+ 	#rm -f $SPOOL_DIR/D.$RNAME
+ 	exit 0
+ fi
+ 
+ # If it's not a fax piped in on stdin, pass everything straight through to 
+ # mono-gfax.
+-mono @prefix@/lib/gfax/gfax.exe $@
++@mono@ @pkglibdir@/gfax.exe $@
+--- gfax/gfaxlpr.in.orig	2005-02-01 00:03:09.000000000 +0100
++++ gfax/gfaxlpr.in	2005-05-03 02:13:55.000000000 +0200
+@@ -16,4 +16,4 @@
+ SPOOL_DIR=@eprefix@/var/spool/gfax
+ 
+ cat > $SPOOL_DIR/D.$RNAME
+-exec mono @prefix@/lib/gfax/gfax.exe -f $SPOOL_DIR/D.$RNAME &
++exec @mono@ @pkglibdir@/gfax.exe -f $SPOOL_DIR/D.$RNAME &
+--- gfax/Makefile.am.orig	2005-02-13 00:13:22.000000000 +0100
++++ gfax/Makefile.am	2005-05-03 02:39:19.000000000 +0200
+@@ -30,11 +30,11 @@
+ bindir=$(prefix)/bin
+ 
+ gfax: gfax.in config.log
+-	sed -e "s|\@prefix\@|$(prefix)|" 	\
++	sed -e "s|\@prefix\@|$(prefix)|" -e "s|\@pkglibdir\@|$(pkglibdir)|" -e "s|\@mono\@|$(mono)|" 	\
+ 		-e "s|\@eprefix\@|$(eprefix)|" < gfax.in > gfax
+ 
+ gfaxlpr: gfaxlpr.in config.log
+-	sed -e "s|\@prefix\@|$(prefix)|" 	\
++	sed -e "s|\@prefix\@|$(prefix)|" -e "s|\@pkglibdir\@|$(pkglibdir)|" -e "s|\@mono\@|$(mono)|" 	\
+ 		-e "s|\@eprefix\@|$(eprefix)|" < gfaxlpr.in > gfaxlpr
+ 
+ INTLTOOL =                      \
