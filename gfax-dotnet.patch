@@ -1,0 +1,32 @@
+diff -urbB gfax.org/src/gui.cs gfax/src/gui.cs
+--- gfax.org/src/gui.cs	2005-02-28 22:08:34.000000000 +0100
++++ gfax/src/gui.cs	2005-10-17 20:25:40.779008750 +0200
+@@ -541,8 +541,8 @@
+ 		private int update_queue_status(string queue)
+ 		{
+ 			G_ListView view;
+-			Fax.FaxQueue q;
+-			Fax.FaxRecQueue rq;
++			Fax.FaxQueue q = null;
++			Fax.FaxRecQueue rq = null;
+ 						
+ 			view = lv;
+ 				
+@@ -580,7 +580,7 @@
+ 					
+ 					Appbar.ClearStack();
+ 						
+-					if (q.Jobid != "") {
++					if (q != null && q.Jobid != "") {
+ 						Appbar.Push(Catalog.GetString("There are " + reply.Count + " jobs in the queue"));
+ 						Appbar.Refresh();
+ 						((Gtk.Window) gxml["Gfax"]).Title = "Gfax (" + reply.Count + ")";
+@@ -596,7 +596,7 @@
+ 						view.AddTextToRow(rq.Sender, rq.Status, rq.Pages, rq.TimeReceived, rq.Filename);
+ 					}
+ 					
+-					if (rq.Sender != "") {
++					if (rq != null && rq.Sender != "") {
+ 						Appbar.Push(Catalog.GetString("There are " + reply.Count + " jobs in the queue"));
+ 						Appbar.Refresh();
+ 						((Gtk.Window) gxml["Gfax"]).Title = "Gfax (" + reply.Count + ")";
