@@ -2,7 +2,7 @@ Summary:	The GNOME Fax Application
 Summary(pl):	Aplikacja GNOME do faksów
 Name:		gfax
 Version:	0.7.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://gfax.cowlug.org/%{name}-%{version}-1.tar.gz
@@ -10,6 +10,7 @@ Source0:	http://gfax.cowlug.org/%{name}-%{version}-1.tar.gz
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-paths.patch
+Patch3:		%{name}-dotnet.patch
 URL:		http://gfax.cowlug.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -43,6 +44,7 @@ ich na drukarce faksowej. Gfax dzia³a z GNOME.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
