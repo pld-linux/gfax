@@ -1,8 +1,9 @@
+%include	 /usr/lib/rpm/macros.mono
 Summary:	The GNOME Fax Application
 Summary(pl):	Aplikacja GNOME do faksów
 Name:		gfax
 Version:	0.7.3
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://gfax.cowlug.org/%{name}-%{version}-1.tar.gz
@@ -25,8 +26,7 @@ BuildRequires:	mono-csharp >= 0.93
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.198
 %requires_eq	libgnomeprint
-Requires:	dotnet-gtk-sharp-gnome >= 0.93
-Requires:	mono >= 0.93
+ExcludeArch:	alpha i386 sparc sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
