@@ -1,6 +1,6 @@
 %include	 /usr/lib/rpm/macros.mono
 Summary:	The GNOME Fax Application
-Summary(pl):	Aplikacja GNOME do faksów
+Summary(pl.UTF-8):   Aplikacja GNOME do faksÃ³w
 Name:		gfax
 Version:	0.7.3
 Release:	4
@@ -35,9 +35,9 @@ fax printer.
 
 Gfax works with GNOME.
 
-%description -l pl
-Gfax jest narzêdziem do ³atwego wysy³ania faksów poprzez drukowanie
-ich na drukarce faksowej. Gfax dzia³a z GNOME.
+%description -l pl.UTF-8
+Gfax jest narzÄ™dziem do Å‚atwego wysyÅ‚ania faksÃ³w poprzez drukowanie
+ich na drukarce faksowej. Gfax dziaÅ‚a z GNOME.
 
 %prep
 %setup -q -n %{name}
