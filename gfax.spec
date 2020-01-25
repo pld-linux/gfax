@@ -1,4 +1,3 @@
-%include	 /usr/lib/rpm/macros.mono
 Summary:	The GNOME Fax Application
 Summary(pl.UTF-8):	Aplikacja GNOME do faksów
 Name:		gfax
